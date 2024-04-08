@@ -28,7 +28,7 @@ namespace api.Models
         // marketcap ~ long because it can be in the trillions
         public long MarketCap { get; set; }
 
-        // work on 1 to many relationship
-        public List<Comment> Comments { get; set; } = new 
+        // work on 1 to many relationship ~ will go back to our Comment model
+        public List<Comment> Comments { get; set; } = new List<Comment>();
     }
 }
