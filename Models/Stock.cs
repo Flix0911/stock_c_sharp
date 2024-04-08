@@ -19,6 +19,7 @@ namespace api.Models
 
         // input a decimal type
         public decimal Purchase { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
         // dividend
         public decimal LastDiv { get; set; }
 
