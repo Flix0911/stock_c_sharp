@@ -23,7 +23,7 @@ namespace api.Data
         // manipulating the entire Stock table ~ this will make the db
         
         // Create for Stock
-        public DbSet<Stock> Stock { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
         // create for Comment
         public DbSet<Comment> Comments { get; set; }
     }

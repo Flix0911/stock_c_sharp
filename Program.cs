@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// add controller
+builder.Services.AddControllers();
 
 // hook up db context ~ must be before app
 builder.Services.AddDbContext<ApplicationDBContext>(options => {
@@ -34,6 +36,9 @@ using (var scope = app.Services.CreateScope())
     var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDBContext>();
     dbContext.Database.Migrate();
 }
+
+// mapcontroller
+app.MapControllers();
 
 app.Run();
 

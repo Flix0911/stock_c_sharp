@@ -7,13 +7,13 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace api.Migrations
 {
     /// <inheritdoc />
-    public partial class fixnumbertwo : Migration
+    public partial class dbconnect : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Stock",
+                name: "Stocks",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -27,7 +27,7 @@ namespace api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Stock", x => x.Id);
+                    table.PrimaryKey("PK_Stocks", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -45,9 +45,9 @@ namespace api.Migrations
                 {
                     table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comments_Stock_StockId",
+                        name: "FK_Comments_Stocks_StockId",
                         column: x => x.StockId,
-                        principalTable: "Stock",
+                        principalTable: "Stocks",
                         principalColumn: "Id");
                 });
 
@@ -64,7 +64,7 @@ namespace api.Migrations
                 name: "Comments");
 
             migrationBuilder.DropTable(
-                name: "Stock");
+                name: "Stocks");
         }
     }
 }
