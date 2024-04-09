@@ -6,6 +6,7 @@ using api.Data;
 using api.DTOs.Stock;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers
 {
@@ -20,19 +21,21 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        // return task will be called at the end of the function
+        public async Task<IActionResult> GetAll()
         {
-            var stocks = _context.Stocks.ToList()
+            var stocks = await _context.Stocks.ToListAsync();
             // this is .nets version of map ~ immutable list/array
-            .Select(s => s.ToStockDto());
+
+            var stockDto = stocks.Select(s => s.ToStockDto());
 
             return Ok(stocks);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var stock = _context.Stocks.Find(id);
+            var stock = await _context.Stocks.FindAsync(id);
 
             if (stock == null)
             {
@@ -46,20 +49,20 @@ namespace api.Controllers
         [HttpPost]
         // need frombody because it is going to be sync in json ~ passing in the actual body of http
         // create the request portion of the DTO
-        public IActionResult Create([FromBody] CreateStockRequestDto stockDto)
+        public async Task<IActionResult> Create([FromBody] CreateStockRequestDto stockDto)
         {
             var stockModel = stockDto.ToStockFromCreateDto();
-            _context.Stocks.Add(stockModel);
-            _context.SaveChanges();
+           await _context.Stocks.AddAsync(stockModel);
+           await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
         }
 
         // lets make a put
         [HttpPut]
         [Route("{id}")]
-        public IActionResult Update([FromRoute] int id, [FromBody] UpdateStockRequestDto updateDto)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateStockRequestDto updateDto)
         {
-            var stockModel = _context.Stocks.FirstOrDefault(x => x.Id == id);
+            var stockModel = await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
 
             if(stockModel == null)
             {
@@ -74,7 +77,7 @@ namespace api.Controllers
             stockModel.MarketCap = updateDto.MarketCap;
 
             // will send changes to db
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             // use StockDto to return the whole object back
             return Ok(stockModel.ToStockDto());
@@ -84,9 +87,9 @@ namespace api.Controllers
         [HttpDelete]
         [Route("{id}")]
 
-        public IActionResult Delete([FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            var stockModel =  _context.Stocks.FirstOrDefault(x => x.Id == id);
+            var stockModel =  await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
 
             if(stockModel == null)
             {
@@ -95,7 +98,7 @@ namespace api.Controllers
 
             _context.Stocks.Remove(stockModel);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             // do a delete, nocontent is success (204)
             return NoContent();
