@@ -138,3 +138,7 @@
 /Users/erickvalencia/to_do_c_sharp/api/obj/Debug/net8.0/api.sourcelink.json
 /Users/erickvalencia/to_do_c_sharp/api/bin/Debug/net8.0/Npgsql.dll
 /Users/erickvalencia/to_do_c_sharp/api/bin/Debug/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/Users/erickvalencia/to_do_c_sharp/api/bin/Debug/net8.0/Microsoft.AspNetCore.JsonPatch.dll
+/Users/erickvalencia/to_do_c_sharp/api/bin/Debug/net8.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/Users/erickvalencia/to_do_c_sharp/api/bin/Debug/net8.0/Newtonsoft.Json.dll
+/Users/erickvalencia/to_do_c_sharp/api/bin/Debug/net8.0/Newtonsoft.Json.Bson.dll

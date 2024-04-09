@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.DTOs.Comment;
 
 namespace api.DTOs.Stock
 {
@@ -24,6 +25,7 @@ namespace api.DTOs.Stock
 
         // marketcap ~ long because it can be in the trillions
         public long MarketCap { get; set; }
+        public List<CommentDto> Comments { get; set; }
 
         // comments were previously here, but don't need them returned in the api
     }
