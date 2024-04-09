@@ -1,4 +1,6 @@
 using api.Data;
+using api.Interfaces;
+using api.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,9 @@ builder.Services.AddDbContext<ApplicationDBContext>(options => {
     // will go to app.settings json
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+// add our services
+builder.Services.AddScoped<IStockRepository, StockRepository>();
 
 var app = builder.Build();
 
