@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 // giant class that allows you to search your individual tables
@@ -10,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace api.Data
 // inherit from DbContext
 {
-    public class ApplicationDBContext : DbContext
+    public class ApplicationDBContext : IdentityDbContext<AppUser>
     {
         // hit ctor ~ create a constructor
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options)
