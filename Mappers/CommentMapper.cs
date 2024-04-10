@@ -35,5 +35,17 @@ namespace api.Mappers
                 StockId = stockId
             };
         }
+         public static Comment ToCommentFromUpdate(this UpdateCommentRequestDto commentDto, int stockId)
+        {
+            // Ensure that updated on is set to UTC at the time of object creation
+            DateTime utcNow = DateTime.UtcNow;
+
+            return new Comment
+            {
+                Title = commentDto.Title,
+                Content = commentDto.Content,
+                StockId = stockId
+            };
+        }
     }
 }
