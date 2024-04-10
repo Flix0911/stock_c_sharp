@@ -21,5 +21,19 @@ namespace api.Mappers
                 StockId = commentModel.StockId
             };
         }
+
+        public static Comment ToCommentFromCreate(this CreateCommentDto commentDto, int stockId)
+        {
+            // Ensure that CreatedOn is set to UTC at the time of object creation
+            DateTime utcNow = DateTime.UtcNow;
+
+            return new Comment
+            {
+                Title = commentDto.Title,
+                Content = commentDto.Content,
+                CreatedOn = utcNow,
+                StockId = stockId
+            };
+        }
     }
 }
