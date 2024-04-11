@@ -94,6 +94,8 @@ builder.Services.AddScoped<IStockRepository, StockRepository>();
 // add dependency injector for comment
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IPortfolioRepository, PortfolioRepository>();
+
 
 var app = builder.Build();
 
