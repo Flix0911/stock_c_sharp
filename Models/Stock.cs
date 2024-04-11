@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace api.Models
 {
+    [Table("Stocks")]
     public class Stock
     {
         // int prop ~ 
@@ -31,5 +32,6 @@ namespace api.Models
 
         // work on 1 to many relationship ~ will go back to our Comment model
         public List<Comment> Comments { get; set; } = new List<Comment>();
+        public List<Portfolio> Portfolios { get; set; } = new List<Portfolio>();
     }
 }
