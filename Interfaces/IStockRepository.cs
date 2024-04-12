@@ -15,6 +15,7 @@ namespace api.Interfaces
         // add a task
         Task<List<Stock>> GetAllAsync(QueryObject query);
         Task<Stock?> GetByIdAsync(int id); //FirstOrDefault can be null
+        Task<Stock?> GetBySymbolAsync(string symbol);
         // return a stock
         Task<Stock> CreateAsync(Stock stockModel);
         // Return type of stock
