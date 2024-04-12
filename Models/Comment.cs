@@ -21,5 +21,7 @@ namespace api.Models
         public int? StockId { get; set; }
         // Navigation property ~ will allow us to access and . into it later
         public Stock? Stock { get; set; }
+        public string AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }
